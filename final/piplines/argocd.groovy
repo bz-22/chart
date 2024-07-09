@@ -11,7 +11,7 @@ PROP = [:]
 
 PROP['git_cred'] = 'github_ssh2'
 PROP['branch'] = 'main'
-PROP['proj_url'] = 'https://github.com/ofirbakria/final_project'
+PROP['proj_url'] = 'https://github.com/ofirbakria/final_project '
 PROP['project_folder_name'] = 'final'
 
 
