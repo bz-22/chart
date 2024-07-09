@@ -11,7 +11,7 @@ PROP = [:]
 
 PROP['git_cred'] = 'github_ssh2'
 PROP['branch'] = 'main'
-PROP['proj_url'] = 'https://github.com/ofirbakria/final_project '
+PROP['proj_url'] = 'https://github.com/bz-22/final-project'
 PROP['project_folder_name'] = 'final'
 
 
@@ -69,8 +69,10 @@ pipeline {
                     sshagent([PROP.git_cred]){
                         sh """
                             git init
+                            git config user.name "bz-22"
+                            git config user.email "bsharzein@gmail.com"
                             git branch -M main
-                            git remote add origin git@github.com:ofirbakria/forArgo.git
+                            git remote add origin git@github.com:bz-22/chartNew.git
                             git add .
                             git commit -m "Commit at ${System.currentTimeMillis()}"
 
