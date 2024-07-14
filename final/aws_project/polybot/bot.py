@@ -37,7 +37,7 @@ class Bot:
         self.telegram_bot_client.send_message(chat_id, text)
 
     def send_text_with_quote(self, chat_id, text, quoted_msg_id):
-        self.telegram_bot_client.send_message(chat_id, text, reply_to_message_id=quoted_msg_id)
+        self.telegram_bot_client.send_message(chat_id, text, reply_to_message_id=int(quoted_msg_id))
 
     @staticmethod
     def is_current_msg_photo(msg):
