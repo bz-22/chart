@@ -14,7 +14,7 @@ def get_secret():
     secret_name = "bashar"
     region_name = "eu-west-1"
 
-    # Create a Secrets Manager client
+    # Create a Secrets Manager client   conflict
     session = boto3.session.Session()
     client = session.client(
         service_name='secretsmanager',
@@ -83,7 +83,7 @@ def results():
     # Create a DynamoDB client
     dynamodb = boto3.client('dynamodb', region_name='eu-west-1')
 
-    # Specify the name of the DynamoDB table
+    # Specify the name of the DynamoDB table .
     table_name = 'bashar_ziv_aws'
 
     # Retrieve the item from the DynamoDB table
