@@ -10,3 +10,4 @@
 #  minReplicas: {{ .Values.hpa.minReplicas }}
 #  maxReplicas: {{ .Values.hpa.maxReplicas }}
 #  targetCPUUtilizationPercentage: {{ .Values.hpa.targetCPUUtilizationPercentage }}
+#
