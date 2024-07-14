@@ -4,9 +4,9 @@ releaseName: final-project
 
 image:
   polyRepository: basharz/poly
-  polyTag: "2.4"
+  polyTag: "2.5"
   yoloRepository: basharz/yolo
-  yoloTag: "2.4"
+  yoloTag: "2.5"
 
 polyPort: 8443
 yoloPort: 8441

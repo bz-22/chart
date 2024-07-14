@@ -98,7 +98,7 @@ def results():
     if 'Item' in response:
         item = response['Item']
         chat_id = int(item['chat_id'].get('S'))
-        message_id = item['message_id']
+        message_id = int(item['message_id'].get('S'))
         text_results = json.loads(item['description'].get('S'))
     else:
         print(f"No item found with prediction_id: {prediction_id}")
