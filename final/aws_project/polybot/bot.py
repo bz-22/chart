@@ -9,6 +9,7 @@ from telebot.types import InputFile
 from botocore.exceptions import ClientError
 import io
 
+
 class Bot:
 
     def __init__(self, token, telegram_chat_url):
@@ -23,15 +24,14 @@ class Bot:
         self.telegram_bot_client.remove_webhook()
         time.sleep(0.5)
 
-
         with open('YOURPUBLIC.pem', 'r') as file:
-          pem_contents = file.read()
-          print(pem_contents)
+            pem_contents = file.read()
+            print(pem_contents)
         # set the webhook URL
-        #self.telegram_bot_client.set_webhook(url=f'{telegram_chat_url}/{token}/', timeout=60)
-        self.telegram_bot_client.set_webhook(url=f'{telegram_chat_url}/{token}/', certificate=open('YOURPUBLIC.pem', 'r'))
+        # self.telegram_bot_client.set_webhook(url=f'{telegram_chat_url}/{token}/', timeout=60)
+        self.telegram_bot_client.set_webhook(url=f'{telegram_chat_url}/{token}/',
+                                             certificate=open('YOURPUBLIC.pem', 'r'))
         logger.info(f'Telegram Bot information\n\n{self.telegram_bot_client.get_me()}')
-
 
     def send_text(self, chat_id, text):
         self.telegram_bot_client.send_message(chat_id, text)
@@ -67,7 +67,7 @@ class Bot:
         if not os.path.exists(img_path):
             raise RuntimeError("Image path doesn't exist")
 
-        self.telegram_bot_client.send_photo(chat_id,InputFile(img_path))
+        self.telegram_bot_client.send_photo(chat_id, InputFile(img_path))
 
     def handle_message(self, msg):
         """Bot Main message handler"""
@@ -96,15 +96,16 @@ class ObjectDetectionBot(Bot):
 
             # TODO upload the photo to S3
             s3 = boto3.client('s3')
-            s3.upload_file(photo_path, "basharziv" , photo_key)
+            s3.upload_file(photo_path, "basharziv", photo_key)
 
             print(f"Photo uploaded successfully to S3 bucket: {'basharziv'} with key: {photo_key}")
-         
+
             message = {
                 'image': photo_key,
-                'chat_id': msg['chat']['id']
+                'chat_id': msg['chat']['id'],
+                'message_id': msg["message_id"]
             }
-            
+
             self.send_message_to_sqs(json.dumps(message))
 
         # elif self.custom_startswith(msg["text"], "pixabay:"):
@@ -115,15 +116,15 @@ class ObjectDetectionBot(Bot):
         #     self.send_text(msg['chat']['id'], f'Your Photo from Pixabay API :{data2} \n')
         else:
             super().handle_message(msg)
-    
-    def custom_startswith(self,s, prefix):
+
+    def custom_startswith(self, s, prefix):
         return s[:len(prefix)] == prefix
-        
-    def send_message_to_sqs(self,message):
-        
+
+    def send_message_to_sqs(self, message):
+
         # Create an SQS client
         sqs = boto3.client('sqs', region_name="eu-west-1")
-        
+
         # Get the queue URL by its name
         queue_url = 'https://sqs.eu-west-1.amazonaws.com/933060838752/bashar_z_sqs'
         try:
