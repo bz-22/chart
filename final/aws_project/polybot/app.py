@@ -14,7 +14,7 @@ def get_secret():
     secret_name = "bashar"
     region_name = "eu-west-1"
 
-    # Create a Secrets Manager client   conflict
+    # Create a Secrets Manager client   conflict 2.0
     session = boto3.session.Session()
     client = session.client(
         service_name='secretsmanager',
