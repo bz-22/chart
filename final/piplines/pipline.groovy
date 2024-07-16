@@ -16,7 +16,7 @@ PROP['proj_url'] = 'https://github.com/bz-22/final-project'
 PROP['dockerhub_cred'] = 'dockerhub_cred' // Jenkins credential ID for DockerHub
 PROP['docker_image1'] = 'basharz/poly'
 PROP['docker_image2'] = 'basharz/yolo'
-PROP['docker_tag'] = '2.3'
+PROP['docker_tag'] = '2.5'
 PROP['aws_cli_cred'] = 'aws-cred'
 
 PROP['project_folder_name'] = 'final'
