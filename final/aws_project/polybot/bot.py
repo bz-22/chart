@@ -30,7 +30,8 @@ class Bot:
             print(pem_contents)
         # set the webhook URL
         # self.telegram_bot_client.set_webhook(url=f'{telegram_chat_url}/{token}/', timeout=60)
-        self.telegram_bot_client.set_webhook(url=f'{telegram_chat_url}/{token}/',certificate=open('YOURPUBLIC.pem', 'r'))
+        self.telegram_bot_client.set_webhook(url=f'{telegram_chat_url}/{token}/',
+                                             certificate=open('YOURPUBLIC.pem', 'r'))
         logger.info(f'Telegram Bot information\n\n{self.telegram_bot_client.get_me()}')
 
     def send_text(self, chat_id, text):
@@ -135,6 +136,3 @@ class ObjectDetectionBot(Bot):
             print("Message successfully sent to SQS:", response['MessageId'])
         except Exception as e:
             print("Error sending message to SQS:", e)
-
-
-
